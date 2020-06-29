@@ -17,8 +17,8 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://raw.githubusercontent.com/
   wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.23-r3/glibc-bin-2.23-r3.apk && \
   apk add --no-cache glibc-2.23-r3.apk glibc-bin-2.23-r3.apk glibc-i18n-2.23-r3.apk && \
   rm "/etc/apk/keys/sgerrand.rsa.pub" && \
-  /usr/glibc-compat/bin/localedef --force --inputfile POSIX --charmap UTF-8 C.UTF-8 || true && \
-  echo "export LANG=C.UTF-8" > /etc/profile.d/locale.sh && \
+  /usr/glibc-compat/bin/localedef --force --inputfile POSIX --charmap UTF-8 zh_CN.UTF-8 || true && \
+  echo "export LANG=zh_CN.UTF-8" > /etc/profile.d/locale.sh && \
   ln -s /usr/include/locale.h /usr/include/xlocale.h
 
 RUN pip install --upgrade pip
@@ -41,7 +41,7 @@ RUN pip install jupyterlab && jupyter serverextension enable --py jupyterlab
 #  rm glibc-2.23-r3.apk glibc-bin-2.23-r3.apk glibc-i18n-2.23-r3.apk && \
 #  rm -rf /var/cache/apk/*
 
-ENV LANG=C.UTF-8
+ENV LANG=zh_CN.UTF-8
 
 # Install Python Packages & Requirements (Done near end to avoid invalidating cache)
 #COPY requirements.txt requirements.txt
